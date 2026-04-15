@@ -53,32 +53,34 @@ Este projeto foi desenvolvido para **[resolver problema X]**, permitindo **[resu
 
 ## Estrutura
 
-<!-- Ajuste conforme o projeto -->
-
-Para cada pasta:
-
-* Descreva responsabilidade, não implementação
-
-✔ Exemplo:
-
 ```bash
 src/
- ├── controller/    # endpoints da API
- ├── service/       # regras de negócio
- └── util/          # classes utilitárias
+ └── main/
+     └── java/
+         └── br/com/progirls/portal/
+             ├── PortalApplication.java  # ponto de inicialização da aplicação Spring Boot
+             ├── controller/             # camada responsável por expor os endpoints da API e receber as requisições HTTP
+             ├── service/                # camada que contém as regras de negócio e orquestra o fluxo da aplicação
+             ├── repository/             # camada de acesso a dados responsável por interagir com o banco de dados
+             ├── model/
+             │   ├── entity/             # representação das entidades persistidas no banco de dados
+             │   └── dto/                # objetos de transferência de dados entre as camadas e com o cliente
+             │       └── area/           # DTOs específicos do domínio de Área
+             ├── mapper/                 # responsável por converter entre entidades e DTOs
+             └── exception/              # tratamento de exceções e padronização das respostas de erro da API
+        └── resources/
+            ├── application.yml          # configurações padrão da aplicação
+            ├── application-dev.yml      # configurações específicas para ambiente de desenvolvimento
+            └── application-test.yml     # configurações específicas para testes automatizados
 ```
 
 ---
 
 ## Endpoints
 
-✔ Exemplo:
-
-| Método | Endpoint    | Descrição               |
-| ------ | ----------- | ----------------------- |
-| POST   | /auth/login | Autenticação de usuário |
-| GET    | /users      | Listar usuários         |
-| POST   | /users      | Criar usuário           |
+| Método | Endpoint    | Descrição    |
+| ------ | ----------- |--------------|
+| GET    | /api/v1/areas    | Listar áreas |
 
 ---
 
@@ -192,10 +194,8 @@ Após subir a aplicação, acesse:
 
 <!-- Incluir apenas se houver -->
 
-✔ Exemplo:
-
 ```bash
-./mvnw test
+./gradlew test
 ```
 
 ---
